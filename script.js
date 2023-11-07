@@ -1,5 +1,8 @@
 const h2 = document.createElement('h2');
 const ol = document.createElement('ol');
+const nameArtist = document.createElement('p');
+const description = document.createElement('p');
+const img = document.createElement('img');
 
 const main = document.querySelector('main');
 
@@ -15,11 +18,25 @@ const getAllArtist = async() => {
     main.appendChild(ol);
 
     for(let i =0; i < artistInfo.data.length; i++){
+
         const li = document.createElement('li');
         li.innerText = artistInfo.data[i].name;
+
+        li.addEventListener('click', () => {
+        console.log(artistInfo.data[i]);
+        main.innerHTML = '';
+        nameArtist.innerText = artistInfo.data[i].name;
+        main.appendChild(nameArtist);
+        });
+
         ol.appendChild(li);
-    }
+
+        }
+
+    
 }
 
+//const getSingleArtist = async(id) => {
 
+//}
 getAllArtist();
