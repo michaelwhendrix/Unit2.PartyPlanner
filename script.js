@@ -43,8 +43,15 @@ const renderDetails = (detailsOfArtist) => {
         <img src="${detailsOfArtist.imageUrl}" alt "image of artist performing" />
 
         <p>${detailsOfArtist.description}</p>
+
+        <button id="back-button">Go Back To List</button>
     `;
     main.innerHTML = html;
+
+    const backButton = document.querySelector(`#back-button`);
+    backButton.addEventListener('click', () => {
+        renderAllArtist();
+    });
 }
 
 //***********funtion that is called be getAllArtists to render all artists in main on page
@@ -62,7 +69,7 @@ const renderAllArtist = () => {
 
     //transforms the array generated above to a string for adding to page
     ol.innerHTML = artistNames.join('------');
-    main.appendChild(ol);
+    main.replaceChildren(ol);
 
     // gets all list items from page and adds the eventListener
     const listItems = document.querySelectorAll('li');
