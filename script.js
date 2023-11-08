@@ -10,19 +10,16 @@ const state ={
 }
 const h2 = document.createElement('h2');
 const ol = document.createElement('ol');
-const nameArtist = document.createElement('p');
-const description = document.createElement('p');
-const img = document.createElement('img');
-
 const main = document.querySelector('main');
 
+//**************************************************** */
 const getAllArtist = async() => {
     const response = await fetch(`${baseURL}/artists`);
     const jsonResponse = await response.json();
     state.allArtists = jsonResponse.data;
     renderAllArtist();
 }
-
+//****************************************************** */
 
 //******function called by renderAllArtists to get the details of an artist
 const getArtistDetails = async (artistId) => {
