@@ -29,14 +29,22 @@ const getArtistDetails = async (artistId) => {
     const response = await fetch(`${baseURL}/artists/${artistId}`);
     const jsonResponse = await response.json();
     const artistDetails = jsonResponse.data;
-    renderDetails();
+    console.log(artistDetails);
+    renderDetails(artistDetails);
 }
 ///****************************
 
 
 //******************************************
-const renderDetails = () => {
+const renderDetails = (detailsOfArtist) => {
+    const html = `
+        <h2>${detailsOfArtist.name}</h2>
 
+        <img src="${detailsOfArtist.imageUrl}" alt "image of artist performing" />
+
+        <p>${detailsOfArtist.description}</p>
+    `;
+    main.innerHTML = html;
 }
 
 //***********funtion that is called be getAllArtists to render all artists in main on page
@@ -49,7 +57,7 @@ const renderAllArtist = () => {
 
     //makes new array with multiple list item tags and name from artists array
     const artistNames = state.allArtists.map((singleArtist) => {
-        return `<li>${singleArtist.name}</li>`;
+        return `<li id="${singleArtist.id}">${singleArtist.name}</li>`;
     });
 
     //transforms the array generated above to a string for adding to page
@@ -60,6 +68,7 @@ const renderAllArtist = () => {
     const listItems = document.querySelectorAll('li');
     listItems.forEach((artistListItem) => {
         artistListItem.addEventListener('click', (event) => {
+            console.log(event.target);
             getArtistDetails(event.target.id);
         });
     });
